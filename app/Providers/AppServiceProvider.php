@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Api\Contracts\ICommentService;
 use App\Api\Repositories\CommentRepository;
 use App\Api\Repositories\Contracts\ICommentRepository;
 use App\Api\Services\CommentService;
+use App\Api\Services\ICommentService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

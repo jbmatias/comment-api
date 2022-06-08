@@ -2,6 +2,7 @@
 
 namespace App\Api\Repositories;
 
+use App\Api\Models\Comment;
 use App\Api\Repositories\Contracts\ICommentRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +10,7 @@ class CommentRepository extends BaseRepository implements ICommentRepository {
 
     public $model;
 
-    public function __construct(Referral $model)
+    public function __construct(Comment $model)
     {
         $this->model = $model;
     }
