@@ -3,6 +3,7 @@
 namespace App\Api\Repositories;
 
 use App\Api\Repositories\Contracts\IBaseRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseRepository implements IBaseRepository
@@ -15,6 +16,16 @@ abstract class BaseRepository implements IBaseRepository
         $this->model = $model;
     }
 
+    public function all(array $columns = ['*'], array $relations = []): Collection
+    {
+        return $this->commentRepository->with($relations)->get($columns);
+    }
+
+    public function whereNull($field)
+    {
+        return $this->model->whereNull($field);
+    }
+    
     public function findTrashedById(int $modelId): ?Model
     {
         return $this->model->withTrashed()->findOrFail($modelId);
@@ -23,6 +34,11 @@ abstract class BaseRepository implements IBaseRepository
     public function findOnlyTrashedById(int $modelId): ?Model
     {
         return $this->model->onlyTrashed()->findOrFail($modelId);
+    }
+
+    public function with(array $relations = [])
+    {
+        return $this->model->with($relations);
     }
 
     public function create(array $payload): ?Model

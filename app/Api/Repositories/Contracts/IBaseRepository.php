@@ -20,4 +20,6 @@ interface IBaseRepository
     public function restoreById(int $modelId): bool;
 
     public function permanentlyDeleteById(int $modelId): bool;
+
+    public function with(array $relations = []);
 }
